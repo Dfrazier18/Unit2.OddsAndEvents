@@ -3,18 +3,23 @@ let numbersBank = [];
 let odds = [];
 let evens = [];
 
-function addBank(n) {
-  bank += n;
+function moveToBank(num) {
+  if (num < 0) return; // Guard
+
+  numbersBank.push(num); // Push the number to bank
   render();
 }
 
-function moveToBank() {
-  if (bank <= 0) return;
+function sortOne() {
+  if (numbersBank.length === 0) return; // Guard
+
+  const num = numbersBank.shift(); // Store first number bank
+  num % 2 === 0 ? evens.push(num) : odds.push(num); // If number is even send to even, if odd send to odd
 }
 
-function sortOne() {}
-
-function sortAll() {}
+function sortAll() {
+  numbersBank.forEach((num) => sortOne()); // For each number in bank, sort
+}
 
 // === Components ===
 function NumberForm() {
